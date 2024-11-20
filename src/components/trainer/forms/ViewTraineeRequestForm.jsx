@@ -22,7 +22,7 @@ const ViewTraineeRequestForm = ({ setOpen, request }) => {
     event.preventDefault(); // Prevent the default form submission behavior
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:8080/account/decline-trainee-request', {
+      const res = await axios.post('https://server-np0x.onrender.com/account/decline-trainee-request', {
         _id: request._id,
         email: request.email,
         firstName: request.firstName,

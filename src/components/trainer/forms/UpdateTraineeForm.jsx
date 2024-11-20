@@ -77,9 +77,9 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
 
     try {
       // console.log(data)
-      const res = await axios.put('http://localhost:8080/account/update-trainee', newData)
+      const res = await axios.put('https://server-np0x.onrender.com/account/update-trainee', newData)
       queryClient.invalidateQueries({queryKey: ['trainerTraineesTableData']})
-      await axios.post('http://localhost:8080/audit/create-audit-trail', {
+      await axios.post('https://server-np0x.onrender.com/audit/create-audit-trail', {
         action: 'update',
         description: `The trainer updated ${data.firstName} ${data.lastName}'s information`,
         userId: user._id

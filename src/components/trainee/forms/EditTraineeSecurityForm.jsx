@@ -34,7 +34,7 @@ const EditTraineeSecurityForm = ({ setOpen }) => {
   const onSubmit = async (data) => {
 
     try {
-      const res = await axios.put('http://localhost:8080/account/update-admin-security', data)
+      const res = await axios.put('https://server-np0x.onrender.com/account/update-admin-security', data)
       toast.success(res.data.message)
       setOpen(false)
       setLoading(false)

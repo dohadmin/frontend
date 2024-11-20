@@ -18,7 +18,7 @@ const LoginForm = ({ setActivePage, setEmail }) => {
 
     console.log(deviceType)
     try {
-      const res = await axios.post('http://localhost:8080/auth/login', data,{
+      const res = await axios.post('https://server-np0x.onrender.com/auth/login', data,{
         headers: {
           devicetype: deviceType
         }

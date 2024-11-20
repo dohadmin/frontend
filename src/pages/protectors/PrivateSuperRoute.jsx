@@ -12,7 +12,7 @@ const PrivateSuperRoute = () => {
 
   const fetchValidateRole = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/auth/validate-role', {
+      const res = await axios.get('https://server-np0x.onrender.com/auth/validate-role', {
         headers: { Authorization: `Bearer ${token}` },
       });
       return res.data;

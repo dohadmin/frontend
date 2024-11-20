@@ -33,7 +33,7 @@ const VerificationForm = ({ email }) => {
 
   const onSubmit = async (data) => {
     try {
-      const res = await axios.put('http://localhost:8080/auth/verify-otp', data);
+      const res = await axios.put('https://server-np0x.onrender.com/auth/verify-otp', data);
       localStorage.setItem('token', res.data.token);
       console.log(res)
       if (res.data.role === "admin") {
@@ -61,7 +61,7 @@ const VerificationForm = ({ email }) => {
 
   const handleResend = async () => {
     try {
-      await axios.post('http://localhost:8080/auth/resend-otp', { email });
+      await axios.post('https://server-np0x.onrender.com/auth/resend-otp', { email });
       setTimer(60);
       setIsResendDisabled(true);
     } catch (error) {

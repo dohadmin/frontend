@@ -36,7 +36,7 @@ const RequestBranch = () => {
     queryKey: ['adminTraineeRequestTableData'],
     queryFn: async () => {
       try {
-        const response = await axios.get('http://localhost:8080/account/get-trainee-requests');
+        const response = await axios.get('https://server-np0x.onrender.com/account/get-trainee-requests');
         setRequests(response.data);
         return response.data;
       } catch (error) {
@@ -64,7 +64,7 @@ const RequestBranch = () => {
 
   // const handleApproveAll = async () => {
   //   try {
-  //     const res = await axios.post('http://localhost:8080/account/approve-all-trainee-requests', { ids: getValues('ids') });
+  //     const res = await axios.post('https://server-np0x.onrender.com/account/approve-all-trainee-requests', { ids: getValues('ids') });
   //     toast.success(res.data.message)
   //     invalidateQueries({ queryKey: ['adminTraineeRequestTableData'] });
   //     reset();

@@ -30,7 +30,7 @@ const TrainingBranch = ({ setActiveBranch, setData }) => {
     queryKey: ["trainerTrainingsTableData"],
     queryFn: async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/training/get-trainings-by-trainer/${user._id}`);        
+        const response = await axios.get(`https://server-np0x.onrender.com/training/get-trainings-by-trainer/${user._id}`);        
         setTrainings(response.data);
         return response.data;
       } catch (error) {
@@ -78,7 +78,7 @@ const TrainingBranch = ({ setActiveBranch, setData }) => {
 
   const handleConfirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/training/delete-training/${selectedTraining._id}`);
+      await axios.delete(`https://server-np0x.onrender.com/training/delete-training/${selectedTraining._id}`);
       queryClient.invalidateQueries({ queryKey: ["trainerTrainingsTableData"] });
       toast.success(`${selectedTraining.title} has been deleted`);
       setDeleteOpen(false);

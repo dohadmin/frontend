@@ -29,7 +29,7 @@ const RequestBranch = () => {
     queryKey: ['trainerTraineeRequestTableData'],
     queryFn: async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/account/get-trainee-requests-by-id/${user._id}`);
+        const response = await axios.get(`https://server-np0x.onrender.com/account/get-trainee-requests-by-id/${user._id}`);
         setRequests(response.data);
         return response.data;
       } catch (error) {

@@ -22,7 +22,7 @@ const Header = ({ name }) => {
   // Function to fetch role validation data
   const fetchValidateRole = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/auth/validate-role", {
+      const res = await axios.get("https://server-np0x.onrender.com/auth/validate-role", {
         headers: { Authorization: `Bearer ${token}` },
       });
       return res.data;
@@ -65,7 +65,7 @@ const Header = ({ name }) => {
     queryKey: ["notifications"],
     queryFn: async () => {
       try {
-        const response = await axios.get("http://localhost:8080/notification/get-notifications");
+        const response = await axios.get("https://server-np0x.onrender.com/notification/get-notifications");
         return response.data;
       } catch (error) {
         console.error(error);
@@ -111,7 +111,7 @@ const Header = ({ name }) => {
 
               setOpenNotif((prev) => !prev)
               try {
-                axios.put("http://localhost:8080/notification/read-notification")
+                axios.put("https://server-np0x.onrender.com/notification/read-notification")
               } catch (error) {
                 console.error(error)
               }

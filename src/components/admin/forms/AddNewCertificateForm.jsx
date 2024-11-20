@@ -69,7 +69,7 @@ const AddNewCertificateForm = ({ setOpen, layers, size, setActiveBranch, templat
     }
     
     try {
-      const res = await axios.post('http://localhost:8080/certificate/create-certificate', newData)
+      const res = await axios.post('https://server-np0x.onrender.com/certificate/create-certificate', newData)
       queryClient.invalidateQueries({queryKey: ['adminCertificateTableData']})
       toast.success(res.data.message)
       setOpen(false)

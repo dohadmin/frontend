@@ -21,7 +21,7 @@ const CertificateBranch = ({ setActiveBranch, setSelectedCertificate, setEditSel
     queryKey: ['adminCertificateTableData'],
     queryFn: async () => {
       try {
-        const response = await axios.get('http://localhost:8080/certificate/get-certificates');
+        const response = await axios.get('https://server-np0x.onrender.com/certificate/get-certificates');
         setCertificates(response.data);
         return response.data;
       } catch (error) {

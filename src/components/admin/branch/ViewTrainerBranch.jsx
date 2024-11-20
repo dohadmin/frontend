@@ -48,7 +48,7 @@ const ViewTrainerBranch = ({ setActiveBranch, selectedTrainer, setData}) => {
 
   const handleConfirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/account/delete-user/${selectedTrainer.credentialId}`);
+      await axios.delete(`https://server-np0x.onrender.com/account/delete-user/${selectedTrainer.credentialId}`);
       queryClient.invalidateQueries({queryKey: ['adminTrainersTableData']})
       toast.success(`${selectedTrainer.firstName} ${selectedTrainer.lastName}'s account has been deleted`)
       setDeleteOpen(false)
@@ -67,7 +67,7 @@ const ViewTrainerBranch = ({ setActiveBranch, selectedTrainer, setData}) => {
     queryKey: ["trainerTrainingsTableData", selectedTrainer._id],
     queryFn: async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/training/get-trainings-by-trainer/${selectedTrainer._id}`);
+        const response = await axios.get(`https://server-np0x.onrender.com/training/get-trainings-by-trainer/${selectedTrainer._id}`);
         return response.data;
       } catch (error) {
         console.log(error);

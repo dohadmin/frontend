@@ -42,7 +42,7 @@ const AdminBranch = () => {
     queryKey: ['superAdminsTableData'],
     queryFn: async () => {
       try {
-        const response = await axios.get('http://localhost:8080/account/get-admins');
+        const response = await axios.get('https://server-np0x.onrender.com/account/get-admins');
         setAdmins(response.data);
         return response.data;
       } catch (error) {
@@ -61,7 +61,7 @@ const AdminBranch = () => {
 
   const handleConfirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/account/delete-admin/${selectedAdmin._id}`);
+      await axios.delete(`https://server-np0x.onrender.com/account/delete-admin/${selectedAdmin._id}`);
       queryClient.invalidateQueries({ queryKey: ['superAdminsTableData'] });
       toast.success(`${selectedAdmin.firstName} ${selectedAdmin.lastName}'s account has been deleted`);
       setDeleteOpen(false);

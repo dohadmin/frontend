@@ -39,7 +39,7 @@ const ProfileBranch = ({setActiveBranch, setData}) => {
     queryKey: ["traineeTrainingsTableData", selectedTrainee._id],
     queryFn: async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/training/get-trainings-by-trainee/${selectedTrainee._id}`);
+        const response = await axios.get(`https://server-np0x.onrender.com/training/get-trainings-by-trainee/${selectedTrainee._id}`);
         return response.data;
       } catch (error) {
         console.log(error);

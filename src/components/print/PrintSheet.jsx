@@ -65,7 +65,7 @@ const PrintSheet = ({ certificate, setOpen, setSelectedCertificate, userId, trai
     queryKey: ["downloadCount", userId, trainingId],
     queryFn: async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/download/get-downloads`, {
+        const response = await axios.get(`https://server-np0x.onrender.com/download/get-downloads`, {
           params: {
             userId: userId,
             trainingId: trainingId,
@@ -90,7 +90,7 @@ const PrintSheet = ({ certificate, setOpen, setSelectedCertificate, userId, trai
       certificateId: certificate._id
     };
     try {
-      const res = await axios.put('http://localhost:8080/download/update-downloads', data);
+      const res = await axios.put('https://server-np0x.onrender.com/download/update-downloads', data);
       queryClient.refetchQueries(["downloadCount", userId, trainingId]);
       console.log(res);
     } catch (error) {
@@ -128,7 +128,7 @@ const PrintSheet = ({ certificate, setOpen, setSelectedCertificate, userId, trai
 
 
   const handleRequestAgain = async () => {
-    // const alreadyRequested = await axios.get(`http://localhost:8080/notifications/get-requests-download/${userId}`)
+    // const alreadyRequested = await axios.get(`https://server-np0x.onrender.com/notifications/get-requests-download/${userId}`)
 
     // console.log(alreadyRequested)
     // if (alreadyRequested.lenght > 0) {
@@ -137,7 +137,7 @@ const PrintSheet = ({ certificate, setOpen, setSelectedCertificate, userId, trai
     // }
     
     try {      
-      const res = await axios.post("http://localhost:8080/notification/request-again", {
+      const res = await axios.post("https://server-np0x.onrender.com/notification/request-again", {
         traineeId: userId,
         message: `has requested another download for the certificate ${certificate.name}`
       })

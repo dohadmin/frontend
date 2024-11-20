@@ -73,7 +73,7 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
     }
 
     try {
-      const res = await axios.post('http://localhost:8080/account/approve-trainee-request', newData)
+      const res = await axios.post('https://server-np0x.onrender.com/account/approve-trainee-request', newData)
       queryClient.invalidateQueries({queryKey: ['adminTrainersTableData']})
       queryClient.invalidateQueries({queryKey: ['adminTraineeRequestTableData']})
       toast.success(res.data.message)
@@ -94,7 +94,7 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
 
   const handleDecline = async () => {
     try {
-      const res = await axios.post('http://localhost:8080/account/decline-trainee-request', { 
+      const res = await axios.post('https://server-np0x.onrender.com/account/decline-trainee-request', { 
         _id: request._id,
         email: request.email,
         firstName: request.firstName,

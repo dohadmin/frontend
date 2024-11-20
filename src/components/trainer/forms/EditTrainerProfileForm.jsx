@@ -76,8 +76,8 @@ const EditTrainerProfileForm = ({setOpen }) => {
     }
 
     try {
-      const res = await axios.put('http://localhost:8080/account/update-trainer-profile', newData)
-      await axios.post('http://localhost:8080/audit/create-audit-trail', {
+      const res = await axios.put('https://server-np0x.onrender.com/account/update-trainer-profile', newData)
+      await axios.post('https://server-np0x.onrender.com/audit/create-audit-trail', {
         action: 'update',
         description: `The trainer ${user.firstName} ${user.lastName} has updated their profile`,
         userId: user._id

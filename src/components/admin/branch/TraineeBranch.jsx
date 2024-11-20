@@ -41,7 +41,7 @@ const TraineeBranch = ({ setActiveBranch, setData }) => {
     queryKey: ['adminTraineesTableData'],
     queryFn: async () => {
       try {
-        const response = await axios.get('http://localhost:8080/account/get-trainees');
+        const response = await axios.get('https://server-np0x.onrender.com/account/get-trainees');
         setTrainees(response.data);
         return response.data;
       } catch (error) {
@@ -61,7 +61,7 @@ const TraineeBranch = ({ setActiveBranch, setData }) => {
 
   const handleConfirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/account/delete-user/${selectedTrainee.credentialId}`);
+      await axios.delete(`https://server-np0x.onrender.com/account/delete-user/${selectedTrainee.credentialId}`);
       queryClient.invalidateQueries({ queryKey: ['adminTraineesTableData'] });
       toast.success(`${selectedTrainee.firstName} ${selectedTrainee.lastName}'s account has been deleted`);
       setDeleteOpen(false);

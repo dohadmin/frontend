@@ -76,7 +76,7 @@ const EditAdminProfileForm = ({setOpen }) => {
     }
 
     try {
-      const res = await axios.put('http://localhost:8080/account/update-admin-profile', newData)
+      const res = await axios.put('https://server-np0x.onrender.com/account/update-admin-profile', newData)
       queryClient.invalidateQueries({queryKey: ['adminProfileData']})
       queryClient.invalidateQueries({queryKey: ['superProfileData']})
       toast.success(res.data.message)

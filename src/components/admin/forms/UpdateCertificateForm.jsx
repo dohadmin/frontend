@@ -69,7 +69,7 @@ const UpdateCertificateForm = ({ setOpen, layers, size, setActiveBranch, selecte
     }
     
     try {
-      const res = await axios.put('http://localhost:8080/certificate/update-certificate', newData);
+      const res = await axios.put('https://server-np0x.onrender.com/certificate/update-certificate', newData);
       queryClient.invalidateQueries({ queryKey: ['adminCertificateTableData'] });
       toast.success(res.data.message);
       setOpen(false);

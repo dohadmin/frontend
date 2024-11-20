@@ -36,7 +36,7 @@ const AddNewTrainerForm = ({setOpen}) => {
 
     try {
       console.log("sending")
-      const res = await axios.post('http://localhost:8080/account/create-trainer', formData)
+      const res = await axios.post('https://server-np0x.onrender.com/account/create-trainer', formData)
       queryClient.invalidateQueries({queryKey: ['adminTrainersTableData']})
       toast.success(res.data.message)
       setOpen(false)

@@ -139,7 +139,7 @@ const EditNewTrainingForm = ({ selectedTraining, setOpen }) => {
     queryKey: ["adminTrainersSelection"],
     queryFn: async () => {
       try {
-        const response = await axios.get("http://localhost:8080/account/get-trainers");
+        const response = await axios.get("https://server-np0x.onrender.com/account/get-trainers");
         return response.data;
       } catch (error) {
         console.log(error);
@@ -152,7 +152,7 @@ const EditNewTrainingForm = ({ selectedTraining, setOpen }) => {
     queryKey: ["adminCertificateSelection"],
     queryFn: async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/certificate/get-valid-certificates`)
+        const response = await axios.get(`https://server-np0x.onrender.com/certificate/get-valid-certificates`)
         return response.data;
       } catch (error) {
         console.log(error);
@@ -163,7 +163,7 @@ const EditNewTrainingForm = ({ selectedTraining, setOpen }) => {
 
   const fetchTrainees = async (query) => {
     try {
-      const response = await axios.get(`http://localhost:8080/account/search-trainees`, {
+      const response = await axios.get(`https://server-np0x.onrender.com/account/search-trainees`, {
         params: {
           search: query,
         },
@@ -252,7 +252,7 @@ const EditNewTrainingForm = ({ selectedTraining, setOpen }) => {
     console.log(data)
     setLoading(true)
     try {
-      const res = await axios.put('http://localhost:8080/training/release-training', data)
+      const res = await axios.put('https://server-np0x.onrender.com/training/release-training', data)
       queryClient.refetchQueries({queryKey: ['adminTrainingsTableData']})
       queryClient.refetchQueries({queryKey: ['trainerTrainingsTableData']})
       queryClient.refetchQueries({queryKey: ['traineeTrainingsTableData']})      
@@ -267,7 +267,7 @@ const EditNewTrainingForm = ({ selectedTraining, setOpen }) => {
 
   const handleDecline = async () => {
     try {
-      const res = await axios.put(`http://localhost:8080/training/decline-training/${selectedTraining._id}`)
+      const res = await axios.put(`https://server-np0x.onrender.com/training/decline-training/${selectedTraining._id}`)
       queryClient.refetchQueries({queryKey: ['adminTrainingsTableData']})
       queryClient.refetchQueries({queryKey: ['trainerTrainingsTableData']})
       queryClient.refetchQueries({queryKey: ['traineeTrainingsTableData']})

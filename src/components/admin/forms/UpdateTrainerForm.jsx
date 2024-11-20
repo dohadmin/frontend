@@ -74,7 +74,7 @@ const UpdateTrainerForm = ({setOpen, trainer, setData}) => {
 
     try {
       console.log(data)
-      const res = await axios.put('http://localhost:8080/account/update-trainer', newData)
+      const res = await axios.put('https://server-np0x.onrender.com/account/update-trainer', newData)
       queryClient.invalidateQueries({queryKey: ['adminTrainersTableData']})
       queryClient.refetchQueries({queryKey: ['trainerTrainingsTableData']})
 
@@ -101,7 +101,7 @@ const UpdateTrainerForm = ({setOpen, trainer, setData}) => {
   const handleResetPassword = async () => {
     setLoading(true)
     try {
-      const res = await axios.post(`http://localhost:8080/account/reset-password`, {
+      const res = await axios.post(`https://server-np0x.onrender.com/account/reset-password`, {
         _id: trainer.credentialId,
         firstName: trainer.firstName,
         email: trainer.email,

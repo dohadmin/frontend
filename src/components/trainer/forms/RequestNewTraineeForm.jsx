@@ -42,8 +42,8 @@ const RequestNewTraineeForm = ({setOpen}) => {
 
     try {
       console.log("sending")
-      const res = await axios.post('http://localhost:8080/account/request-trainee', formData)
-      await axios.post('http://localhost:8080/audit/create-audit-trail', {
+      const res = await axios.post('https://server-np0x.onrender.com/account/request-trainee', formData)
+      await axios.post('https://server-np0x.onrender.com/audit/create-audit-trail', {
         action: 'create',
         description: `The trainer requested a new trainee with the email ${data.email}`,
         userId: user._id

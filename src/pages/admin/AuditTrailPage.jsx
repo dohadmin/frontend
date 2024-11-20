@@ -51,7 +51,7 @@ const AuditTrailPage = () => {
     queryFn: async () => {
       try {
         const convertedMonth = convertMonthToNumber(month);
-        const response = await axios.get('http://localhost:8080/audit/get-audit-trails',{
+        const response = await axios.get('https://server-np0x.onrender.com/audit/get-audit-trails',{
           params: {
             month: convertedMonth,
             year: year,

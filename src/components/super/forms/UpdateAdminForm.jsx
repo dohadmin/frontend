@@ -73,7 +73,7 @@ const UpdateAdminForm = ({setOpen, admin}) => {
 
     try {
       console.log(data)
-      const res = await axios.put('http://localhost:8080/account/update-admin', newData)
+      const res = await axios.put('https://server-np0x.onrender.com/account/update-admin', newData)
       
       toast.success(res.data.message)
       setOpen(false)
@@ -98,7 +98,7 @@ const UpdateAdminForm = ({setOpen, admin}) => {
   const handleResetPassword = async () => {
     setLoading(true)
     try {
-      const res = await axios.post(`http://localhost:8080/account/reset-password`, {
+      const res = await axios.post(`https://server-np0x.onrender.com/account/reset-password`, {
         _id: admin.credentialId,
         firstName: admin.firstName,
         email: admin.email,

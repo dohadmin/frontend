@@ -59,7 +59,7 @@ const ViewTrainingForm = ({ selectedTraining }) => {
 
   const resetDownloads = async (certId, traineeId , trainingId) => {
     try {
-      const res = await axios.put('http://localhost:8080/download/reset-downloads', {
+      const res = await axios.put('https://server-np0x.onrender.com/download/reset-downloads', {
         certificateId: certId.details._id,
         userId: traineeId,
         trainingId: trainingId,

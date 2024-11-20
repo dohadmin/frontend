@@ -76,7 +76,7 @@ const EditTraineeProfileForm = ({setOpen }) => {
     }
 
     try {
-      const res = await axios.put('http://localhost:8080/account/update-trainee-profile', newData)
+      const res = await axios.put('https://server-np0x.onrender.com/account/update-trainee-profile', newData)
       queryClient.refetchQueries({queryKey: ['trainerProfileData']})
       toast.success(res.data.message)
       setOpen(false)

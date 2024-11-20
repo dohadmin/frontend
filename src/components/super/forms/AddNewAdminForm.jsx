@@ -37,7 +37,7 @@ const AddNewAdminForm = ({setOpen}) => {
 
     try {
       console.log("sending")
-      const res = await axios.post('http://localhost:8080/account/create-admin', formData)
+      const res = await axios.post('https://server-np0x.onrender.com/account/create-admin', formData)
       queryClient.invalidateQueries({queryKey: ['superAdminsTableData']})
       toast.success(res.data.message)
       setOpen(false)

@@ -61,7 +61,7 @@ const AddNewTrainingForm = ({ setOpen }) => {
     queryKey: ["adminTrainersSelection"],
     queryFn: async () => {
       try {
-        const response = await axios.get("http://localhost:8080/account/get-trainers");
+        const response = await axios.get("https://server-np0x.onrender.com/account/get-trainers");
         return response.data;
       } catch (error) {
         console.log(error);
@@ -74,7 +74,7 @@ const AddNewTrainingForm = ({ setOpen }) => {
     queryKey: ["adminCertificateSelection"],
     queryFn: async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/certificate/get-valid-certificates`)
+        const response = await axios.get(`https://server-np0x.onrender.com/certificate/get-valid-certificates`)
         return response.data;
       } catch (error) {
         console.log(error);
@@ -85,7 +85,7 @@ const AddNewTrainingForm = ({ setOpen }) => {
 
   const fetchTrainees = async (query) => {
     try {
-      const response = await axios.get(`http://localhost:8080/account/search-trainees`, {
+      const response = await axios.get(`https://server-np0x.onrender.com/account/search-trainees`, {
         params: {
           search: query,
         },
@@ -174,7 +174,7 @@ const AddNewTrainingForm = ({ setOpen }) => {
     console.log(data)
     setLoading(true)
     try {
-      const res = await axios.post('http://localhost:8080/training/create-training', data)
+      const res = await axios.post('https://server-np0x.onrender.com/training/create-training', data)
       console.log(res.data)
       queryClient.invalidateQueries({queryKey: ['adminTrainingsTableData']})
       toast.success(res.data.message)

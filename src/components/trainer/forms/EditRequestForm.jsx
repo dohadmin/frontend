@@ -76,8 +76,8 @@ const EditRequestForm = ({setOpen, request}) => {
     }
 
     try {
-      const res = await axios.post('http://localhost:8080/account/update-trainee-request', newData)
-      await axios.post('http://localhost:8080/audit/create-audit-trail', {
+      const res = await axios.post('https://server-np0x.onrender.com/account/update-trainee-request', newData)
+      await axios.post('https://server-np0x.onrender.com/audit/create-audit-trail', {
         action: 'update',
         description: `The trainer updated the trainee request of ${data.firstName} ${data.lastName}`,
         userId: user._id
@@ -101,12 +101,12 @@ const EditRequestForm = ({setOpen, request}) => {
 
   const handleDecline = async () => {
     try {
-      const res = await axios.post('http://localhost:8080/account/decline-trainee-request', { 
+      const res = await axios.post('https://server-np0x.onrender.com/account/decline-trainee-request', { 
         _id: request._id,
         email: request.email,
         firstName: request.firstName,
       })
-      await axios.post('http://localhost:8080/audit/create-audit-trail', {
+      await axios.post('https://server-np0x.onrender.com/audit/create-audit-trail', {
         action: 'delete',
         description: `The trainer deleted the trainee request of ${request.firstName} ${request.lastName}`,
         userId: user._id
