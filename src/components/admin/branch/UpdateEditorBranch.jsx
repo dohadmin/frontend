@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CanvasEdit from '../editor/CanvasEdit';
-import SideBar from '../editor/SideBar';
+import SideBar from '../editor/Sidebar';
 
 const UpdateEditorBranch = ({ selectedSize, setEditSize, layers, setLayers, selectedCertificate, setEditTemplate  }) => {
 
