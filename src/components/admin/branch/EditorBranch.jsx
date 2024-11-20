@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Canvas from '../editor/Canvas';
-import SideBar from '../editor/SideBar';
+import SideBar from '../editor/Sidebar';
 
 const EditorBranch = ({ selectedSize, setSelectedSize, layers, setLayers, setSelectedTemplate, setSelectedCertificate }) => {
 
