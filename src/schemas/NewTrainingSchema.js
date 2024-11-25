@@ -19,7 +19,7 @@ const NewTrainingSchema = z.object({
         })
       )
     })
-  ),
+  ).nullable().optional(),
   certificates: z.array(
     z.object({
       id: z.string({ required_error: "Certificate ID is required" }),
