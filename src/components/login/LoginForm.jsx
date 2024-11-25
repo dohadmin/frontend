@@ -85,7 +85,7 @@ const LoginForm = ({ setActivePage, setEmail }) => {
                     onChange(e.target.value)
                     clearErrors('email')
                   }}
-                  placeholder="juandelacruz@gmail.com"
+                  placeholder="Type your email here"
                 />
               )}
             />
