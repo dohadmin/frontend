@@ -292,10 +292,8 @@ const EditTrainingForm = ({ selectedTraining, setOpen }) => {
 
 
   const trainingDate = watch("date")
-  const isToday = new Date(trainingDate).toDateString() === new Date().toDateString()
+  const isTrainingDay = new Date(trainingDate).getDate() === new Date().getDate();
 
-  console.log(getValues("trainees"))
-  console.log(errors)
 
 
 
@@ -434,7 +432,7 @@ const EditTrainingForm = ({ selectedTraining, setOpen }) => {
         )}
         </div>
       </div>
-      {isToday && (
+      {isTrainingDay && (
         <>
           <hr className="border-t border-gray-200 w-full mt-4" />
 
@@ -446,7 +444,7 @@ const EditTrainingForm = ({ selectedTraining, setOpen }) => {
           </div>
         </>
       )}
-      {isToday && (
+      {isTrainingDay && (
         <div className="flex flex-col gap-2 w-full">
           <div className="w-full flex items-center justify-between">
             <label className="text-sm uppercase text-neutral-700 font-medium">Trainees</label>
