@@ -305,6 +305,7 @@ const EditTrainingForm = ({ selectedTraining, setOpen }) => {
           render={({ field: { value, onChange } }) => (
             <input
               type="date"
+              min={new Date().toISOString().split('T')[0]}
               className={`w-full ring-1 rounded-md h-10 px-4 outline-none
                 ${
                   errors.date
