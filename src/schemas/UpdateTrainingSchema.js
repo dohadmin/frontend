@@ -20,7 +20,7 @@ const UpdateTrainingSchema = z.object({
         })
       )
     })
-  ).min(1, "At least one Trainee is required"),
+  ),
   certificates: z.array(
     z.object({
       id: z.string({ required_error: "Certificate ID is required" }),
