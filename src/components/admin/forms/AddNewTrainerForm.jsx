@@ -145,6 +145,7 @@ const AddNewTrainerForm = ({setOpen}) => {
             render={({ field: { value, onChange } }) => (
               <input 
                 type="date" 
+                min={new Date().toISOString().split('T')[0]}
                 className={`w-full ring-1  rounded-md h-10 px-4 
                   ${errors.dateOfBirth ? " ring-rose-500 text-rose-500 " : " ring-gray-200 placeholder:text-sm text-smplaceholder:text-gray-500 text-gray-700 focus:outline-none focus:ring-2 "}  
                 `}
