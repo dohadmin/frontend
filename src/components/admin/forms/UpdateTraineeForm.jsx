@@ -28,7 +28,7 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
 
 
 
-  const { control, handleSubmit, formState: { errors }, reset, setError} = useForm({
+  const { control, handleSubmit, formState: { errors }, reset, setError, getValues} = useForm({
     resolver: zodResolver(ViewTraineeRequestSchema),
     defaultValues:{
       _id: trainee.credentialId,
@@ -123,19 +123,7 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
         </div>
         <h1 className="text-lg font-medium text-gray-700">Personal Information</h1>
       </div>
-      <div className="w-full">
-        <Controller
-          name="avatar"
-          control={control}
-          render={({ field : {value, onChange} }) => (
-            <ImageInput
-              value={value}
-              onChange={onChange}
-              person="trainee"
-            />
-          )}
-        />
-      </div>
+
 
       <div className=" flex items-center justify-center gap-4 mt-4 w-full">        
         <div className="flex flex-col gap-2 w-full">
@@ -149,6 +137,7 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
                 placeholder='Juan'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.firstName}
+                isDisabled={true}
               />
             )}
           />
@@ -165,6 +154,7 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
                 placeholder='D.'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.middleInitial}
+                isDisabled={true}
               />
             )}
           />
@@ -181,6 +171,7 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
                 placeholder='Dela Cruz'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.lastName}
+                isDisabled={true}
               />
             )}
           />
@@ -201,6 +192,7 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
                 `}
                 onChange={(e) => onChange(e.target.value)}
                 value={formatDate(value)}
+                disabled={true}
               />
             )}
           />
@@ -220,6 +212,8 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
                 onChange={(newValue) => {
                   onChange(newValue)
                 }}
+                isDisabled={true}
+
               />
             )}
           />
@@ -241,6 +235,7 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
                 setChecked={value => {
                   onChange(value);
                 }}
+                isDisabled={true}
               />
               <RadioButton 
                 className="w-full"
@@ -250,6 +245,7 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
                 setChecked={value => {
                   onChange(value);
                 }}
+                isDisabled={true}
               />
             </>
           )}
@@ -274,7 +270,8 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
                 value={value}
                 placeholder='Consunji'
                 onChange={(e) => onChange(e.target.value)}
-                didError={!!errors.street}         
+                didError={!!errors.street}
+                isDisabled={true} 
               />
             )}
           />
@@ -289,7 +286,8 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
                 value={value}
                 placeholder='Sta Lucia'
                 onChange={(e) => onChange(e.target.value)}
-                didError={!!errors.municipality}         
+                didError={!!errors.municipality}
+                isDisabled={true} 
               />
             )}
           />        
@@ -308,6 +306,7 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
                 placeholder='San Fernando'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.city}         
+                isDisabled={true} 
               />
             )}
           />        
@@ -323,7 +322,8 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
                 value={value}
                 placeholder='Pampanga'
                 onChange={(e) => onChange(e.target.value)}
-                didError={!!errors.province}         
+                didError={!!errors.province}   
+                isDisabled={true}       
               />
             )}
           />        
@@ -341,7 +341,8 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
                 value={value}
                 placeholder='2020'
                 onChange={(e) => onChange(e.target.value)}
-                didError={!!errors.zipCode}         
+                didError={!!errors.zipCode}      
+                isDisabled={true}    
               />
             )}
           />    
@@ -365,7 +366,8 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
               value={value}
               placeholder='+63 098 7654 3210'
               onChange={(e) => onChange(e.target.value)}
-              didError={!!errors.phoneNumber}         
+              didError={!!errors.phoneNumber}      
+              isDisabled={true}    
             />
           )}
         />    
@@ -381,7 +383,8 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
               value={value}
               placeholder='juandelacruz@gmail.com'
               onChange={(e) => onChange(e.target.value)}
-              didError={!!errors.email}         
+              didError={!!errors.email}   
+              isDisabled={true}       
             />
           )}
         />
@@ -396,7 +399,7 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
         className={`w-36 rounded-md h-9 ring-1 ${ isLoading ? "text-gray-500 ring-gray-500 cursor-not-allowed " :"  text-rose-500 ring-rose-500 "}`}
         onClick={handleResetPassword}
         >Reset Password</button>
-        <Button 
+        {/* <Button 
           className="w-32 flex items-center justify-center gap-2"
           isDisabled={isLoading}
         >
@@ -411,7 +414,7 @@ const UpdateTraineeForm = ({setOpen, trainee, setData}) => {
             />          
           )}
           Save
-        </Button>
+        </Button> */}
       </div>
     </form>
   )
