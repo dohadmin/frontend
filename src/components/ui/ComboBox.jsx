@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 const useClickOutside = (ref, handler) => {
   useEffect(() => {
     const listener = (event) => {
-      // Do nothing if clicking ref's element or descendent elements
+      // Do nothing if clicking ref's element or descendant elements
       if (!ref.current || ref.current.contains(event.target)) {
         return;
       }
@@ -27,6 +27,7 @@ const ComboBox = ({
   value,
   onChange,
   didError,
+  isDisabled
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropDownRef = useRef(null);
@@ -38,17 +39,24 @@ const ComboBox = ({
     setIsOpen(false);
   };
 
+  const handleClick = () => {
+    if (!isDisabled) {
+      setIsOpen(!isOpen);
+    }
+  };
+
   return (
     <div className={`relative ${className}`} ref={dropDownRef}>
       <div
-        className={` ring-1
-          ${didError ? 'ring-red-500 text-rose-500 ' : "ring-gray-200 text-gray-500 "}
-          h-10 flex items-center justify-between p-2 cursor-pointer rounded-md px-4 `}
-        onClick={() => setIsOpen(!isOpen)}
+        className={`ring-1
+          ${didError ? 'ring-red-500 text-rose-500' : "ring-gray-200 text-gray-500"}
+          h-10 flex items-center justify-between p-2 cursor-pointer rounded-md px-4
+          ${isDisabled ? ' text-gray-500 cursor-not-allowed' : 'bg-white'}`}
+        onClick={handleClick}
       >
-        <span className={`text-sm  ${value ? " text-gray-700 " : " text-gray-500 "}`}>{value || placeholder}</span>
+        <span className={`text-sm ${value ? "text-gray-700" : "text-gray-500"}`}>{value || placeholder}</span>
       </div>
-      {isOpen && (
+      {isOpen && !isDisabled && (
         <ul className="absolute z-10 p-2 w-full bg-white border mt-2 rounded-md max-h-[12rem] overflow-y-scroll">
           {options.map((option) => (
             <li
