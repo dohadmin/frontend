@@ -228,6 +228,12 @@ const EditTrainingForm = ({ selectedTraining, setOpen }) => {
     setValue("trainees", updatedTrainees);
   };
 
+  const handleClearAllTrainees = () => {
+    setValue("trainees", []);
+    setSelected([]);
+    setScores({});
+  }
+
   const handleClose = () => {
     reset()
     setOpen(false)
@@ -285,7 +291,12 @@ const EditTrainingForm = ({ selectedTraining, setOpen }) => {
 
 
 
+  const trainingDate = watch("date")
+  const isToday = new Date(trainingDate).toDateString() === new Date().toDateString()
+
+  console.log(getValues("trainees"))
   console.log(errors)
+
 
 
   return (
@@ -305,7 +316,6 @@ const EditTrainingForm = ({ selectedTraining, setOpen }) => {
           render={({ field: { value, onChange } }) => (
             <input
               type="date"
-              min={new Date().toISOString().split('T')[0]}
               className={`w-full ring-1 rounded-md h-10 px-4 outline-none
                 ${
                   errors.date
@@ -424,211 +434,218 @@ const EditTrainingForm = ({ selectedTraining, setOpen }) => {
         )}
         </div>
       </div>
-      <hr className="border-t border-gray-200 w-full mt-4" />
+      {isToday && (
+        <>
+          <hr className="border-t border-gray-200 w-full mt-4" />
 
-      <div className="flex items-center gap-2">
-        <div className="w-8 h-8 rounded-md bg-gray-100 flex items-center justify-center">
-          <Users2 className="w-5 h-5 stroke-2 stroke-gray-500" />
-        </div>
-        <h1 className="text-lg font-medium text-gray-700">Add Multiple Trainees</h1>
-      </div>
-
-
-      <div className="flex flex-col gap-2 w-full">
-        <div className="w-full flex items-center justify-between">
-          <label className="text-sm uppercase text-neutral-700 font-medium">Trainees</label>
-          {selected.length > 0 && (
-            <button 
-              type='button'
-              className="text-amber-500 text-sm hover:text-amber-400 active:text-amber-600 transition-all duration-300 ease-in-out outline-none"
-              onClick={handleMaxAllScores}
-            >
-              Max All Scores
-            </button>
-          )}
-        </div>
-        <Controller
-          name="trainees"
-          control={control}
-          render={() => (
-            <SelectTraineeInput
-              trainees={filteredTrainees}
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-                clearErrors("trainees");
-              }}
-              placeholder="Search trainees"
-              handleSelect={handleSelect}
-              didError={!!errors.trainees}
-            />
-          )}
-        />
-        {selected.length > 0 ? (
-          <div className="flex flex-col mt-2 gap-4">
-            {selected.map((trainee, index) => {
-              const initials = trainee.firstName[0] + trainee.lastName[0];
-              const bgColor = getColorForInitial(initials ? initials[0] : "");
-
-              return (
-                <div
-                  key={index}
-                  className="w-full h-fit rounded-md items-center justify-start gap-4 flex flex-col ring-1 p-4 ring-gray-200 "
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-md bg-gray-100 flex items-center justify-center">
+              <Users2 className="w-5 h-5 stroke-2 stroke-gray-500" />
+            </div>
+            <h1 className="text-lg font-medium text-gray-700">Add Multiple Trainees</h1>
+          </div>
+        </>
+      )}
+      {isToday && (
+        <div className="flex flex-col gap-2 w-full">
+          <div className="w-full flex items-center justify-between">
+            <label className="text-sm uppercase text-neutral-700 font-medium">Trainees</label>
+            <div className="w-full items-center justify-end flex gap-4">
+              <button 
+                  type='button'
+                  className="text-rose-500 text-sm hover:text-amber-400 active:text-amber-600 transition-all duration-300 ease-in-out outline-none"
+                  onClick={handleClearAllTrainees}
                 >
-                  <div className="w-full flex items-center justify-between ">
-                    <div className="w-full flex items-center justify-start gap-2 ">
-                      <div>
-                        {trainee.avatar ? (
-                          <img src={trainee.avatar} alt="trainee" className="bg-black w-9 h-9 flex-shrink-0 rounded-full" />
-                        ) : (
-                          <div className={`w-9 h-9 rounded-full ${bgColor} text-white flex items-center justify-center flex-shrink-0`}>
-                            {initials}
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex flex-col justify-start">
-                        <div className="flex items-start justify-start gap-2">
-                          <span className="text-gray-700 font-medium">
-                            {trainee.firstName} {trainee.middleInitial} {trainee.lastName}
-                          </span>
-                        </div>
-                        <span className="text-gray-500 text-sm">{trainee.email}</span>
-                      </div>
-                    </div>
-                    <button type="button" onClick={() => {
-                      const updatedTrainees = selected.filter((t) => t._id !== trainee._id);
-                      setSelected(updatedTrainees);
-                      setValue("trainees", updatedTrainees.map((t) => ({
-                        id: t._id,
-                        status: t.status === "verified" ? "trainees" : "requests",
-                        score: scores[t._id] || 0,
-                      })));
-                      setScores(prevScores => {
-                        const newScores = { ...prevScores };
-                        delete newScores[trainee._id];
-                        return newScores;
-                      });
+                  Clear All
+              </button>
+              {selected.length > 0 && (
+                <button 
+                  type='button'
+                  className="text-amber-500 text-sm hover:text-amber-400 active:text-amber-600 transition-all duration-300 ease-in-out outline-none"
+                  onClick={handleMaxAllScores}
+                >
+                  Max All Scores
+                </button>
+              )}
+              
+            </div>
+          </div>
+          <Controller
+            name="trainees"
+            control={control}
+            render={() => (
+              <SelectTraineeInput
+                trainees={filteredTrainees}
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  clearErrors("trainees");
+                }}
+                placeholder="Search trainees"
+                handleSelect={handleSelect}
+                didError={!!errors.trainees}
+              />
+            )}
+          />
+          {selected.length > 0 ? (
+            <div className="flex flex-col mt-2 gap-4">
+              {selected.map((trainee, index) => {
+                const initials = trainee.firstName[0] + trainee.lastName[0];
+                const bgColor = getColorForInitial(initials ? initials[0] : "");
 
-
-                      
-                    }}>
-                      <X className="w-6 h-6 stroke-2 stroke-rose-500" />
-                    </button>
-                  </div>
-                  <div className="w-full flex flex-col gap-4">
-                    <label className="text-sm uppercase text-neutral-700 font-medium">Score</label>
-                    <input 
-                      type="range" 
-                      max={100}
-                      min={0}
-                      step={1}
-                      className="appearance-none w-full bg-transparent 
-                        [&::-webkit-slider-runnable-track]:bg-gray-200 
-                        [&::-webkit-slider-runnable-track]:rounded-full
-                        [&::-webkit-slider-runnable-track]:ring-1
-                        [&::-webkit-slider-runnable-track]:ring-gray-200
-                        [&::-webkit-slider-runnable-track]:h-1
-                        [&::-webkit-slider-thumb]:appearance-none
-                        [&::-webkit-slider-thumb]:w-4
-                        [&::-webkit-slider-thumb]:h-4
-                        [&::-webkit-slider-thumb]:bg-white
-                        [&::-webkit-slider-thumb]:ring-[4px]
-                        [&::-webkit-slider-thumb]:ring-amber-500
-                        [&::-webkit-slider-thumb]:rounded-full
-                        [&::-webkit-slider-thumb]:transform translate-y-[-40%]
-                      "
-                      value={scores[trainee._id] || 0}
-                      onChange={(e) => {
-                        const newScore = parseInt(e.target.value, 10);
-                        setScores((prevScores) => ({ ...prevScores, [trainee._id]: newScore }));            
-                        const updatedTrainees = getValues("trainees").map((t) =>
-                          t.id === trainee._id ? { ...t, score: newScore } : t
-                        );
-                        setValue("trainees", updatedTrainees);
-                      }}
-                    />
-                    <span className="text-sm text-gray-500">{scores[trainee._id] || 0}%</span>
-                  </div>
-                  <div className="flex flex-col w-full gap-4 h-full">
-                    {formCertificates.map((certificate, certIndex) => {
-                      const cert = certificates.find((c) => c._id === certificate.id);
-                      const certRubrics = cert ? cert.rubrics : [];
-
-                      return (
-                        <div key={certIndex} className="w-full flex flex-col">
-                          {/* Certificate Header */}
-                          <h2 className="text-lg font-semibold text-gray-700">
-                            {cert?.name || "Unknown Certificate"}
-                          </h2>
-
-                          {/* Rubrics for This Certificate */}
-                          {certRubrics.length > 0 ? (
-                            <div className="flex flex-col mt-2 gap-2 ">
-                              {certRubrics.map((rubric, rubricIndex) => (
-                                <div
-                                  key={rubricIndex}
-                                  className="w-full h-fit rounded-md items-center justify-start gap-4 flex "
-                                >
-                                  <input
-                                    type="checkbox"
-                                    onChange={(e) => {
-                                      const isChecked = e.target.checked;
-                                      const updatedTrainees = getValues("trainees").map((t) => {
-                                        if (t.id === trainee._id) {
-                                          const updatedRubrics = t.rubrics.map((r) => {
-                                            if (r.certificateId === certificate.id) {
-                                              if (isChecked) {
-                                                return { ...r, rubrics: [...r.rubrics, rubric] };
-                                              } else {
-                                                return { ...r, rubrics: r.rubrics.filter((rr) => rr !== rubric) };
-                                              }
-                                            }
-                                            return r;
-                                          });
-                                          return { ...t, rubrics: updatedRubrics };
-                                        }
-                                        return t;
-                                      });
-                                      setValue("trainees", updatedTrainees);
-                                    }}
-                                    checked={watch("trainees").some((t) => {
-                                
-                                      if (t.id === trainee._id) {
-                                        const rubricData = t.rubrics.find((r) => r.certificateId === certificate.id);
-                                        return rubricData?.rubrics.includes(rubric);
-                                      }
-                                      return false;
-                                    })}
-                                    className="w-4 h-4 rounded-md flex-shrink-0"
-                                  />
-
-                                  <span className="text-sm font-medium text-gray-500">{rubric}</span>
-                                </div>
-                              ))}
-                            </div>
+                return (
+                  <div
+                    key={index}
+                    className="w-full h-fit rounded-md items-center justify-start gap-4 flex flex-col ring-1 p-4 ring-gray-200 "
+                  >
+                    <div className="w-full flex items-center justify-between ">
+                      <div className="w-full flex items-center justify-start gap-2 ">
+                        <div>
+                          {trainee.avatar ? (
+                            <img src={trainee.avatar} alt="trainee" className="bg-black w-9 h-9 flex-shrink-0 rounded-full" />
                           ) : (
-                            <p className="text-gray-500 text-sm">No rubrics available for this certificate.</p>
+                            <div className={`w-9 h-9 rounded-full ${bgColor} text-white flex items-center justify-center flex-shrink-0`}>
+                              {initials}
+                            </div>
                           )}
                         </div>
-                      );
-                    })}
-                  </div>
+                        <div className="flex flex-col justify-start">
+                          <div className="flex items-start justify-start gap-2">
+                            <span className="text-gray-700 font-medium">
+                              {trainee.firstName} {trainee.middleInitial} {trainee.lastName}
+                            </span>
+                          </div>
+                          <span className="text-gray-500 text-sm">{trainee.email}</span>
+                        </div>
+                      </div>
+                      {/* <button type="button" onClick={() => {
+                        const updatedTrainees = selected.filter((t) => t._id !== trainee._id);
+                        
+                        console.log('selected:', selected);
+                        console.log('updatedTrainees:', updatedTrainees);
 
-                </div>
-              );
-            })}
-          </div>
-        ): (
-          <div className="w-full rounded-md ring-1 ring-gray-200 h-40 mt-2 flex flex-col items-center justify-center gap-2">
-            <div className="w-8 h-8 rounded-md bg-gray-100 flex items-center justify-center">
-              <User className="w-6 h-6 stroke-2 stroke-gray-500" />
+                        setValue("trainees", updatedTrainees);
+                        setSelected(updatedTrainees);
+                      }}>
+                        <X className="w-6 h-6 stroke-2 stroke-rose-500" />
+                      </button> */}
+
+                    </div>
+                    <div className="w-full flex flex-col gap-4">
+                      <label className="text-sm uppercase text-neutral-700 font-medium">Score</label>
+                      <input 
+                        type="range" 
+                        max={100}
+                        min={0}
+                        step={1}
+                        className="appearance-none w-full bg-transparent 
+                          [&::-webkit-slider-runnable-track]:bg-gray-200 
+                          [&::-webkit-slider-runnable-track]:rounded-full
+                          [&::-webkit-slider-runnable-track]:ring-1
+                          [&::-webkit-slider-runnable-track]:ring-gray-200
+                          [&::-webkit-slider-runnable-track]:h-1
+                          [&::-webkit-slider-thumb]:appearance-none
+                          [&::-webkit-slider-thumb]:w-4
+                          [&::-webkit-slider-thumb]:h-4
+                          [&::-webkit-slider-thumb]:bg-white
+                          [&::-webkit-slider-thumb]:ring-[4px]
+                          [&::-webkit-slider-thumb]:ring-amber-500
+                          [&::-webkit-slider-thumb]:rounded-full
+                          [&::-webkit-slider-thumb]:transform translate-y-[-40%]
+                        "
+                        value={scores[trainee._id] || 0}
+                        onChange={(e) => {
+                          const newScore = parseInt(e.target.value, 10);
+                          setScores((prevScores) => ({ ...prevScores, [trainee._id]: newScore }));            
+                          const updatedTrainees = getValues("trainees").map((t) =>
+                            t.id === trainee._id ? { ...t, score: newScore } : t
+                          );
+                          setValue("trainees", updatedTrainees);
+                        }}
+                      />
+                      <span className="text-sm text-gray-500">{scores[trainee._id] || 0}%</span>
+                    </div>
+                    <div className="flex flex-col w-full gap-4 h-full">
+                      {formCertificates.map((certificate, certIndex) => {
+                        const cert = certificates.find((c) => c._id === certificate.id);
+                        const certRubrics = cert ? cert.rubrics : [];
+
+                        return (
+                          <div key={certIndex} className="w-full flex flex-col">
+                            {/* Certificate Header */}
+                            <h2 className="text-lg font-semibold text-gray-700">
+                              {cert?.name || "Unknown Certificate"}
+                            </h2>
+
+                            {/* Rubrics for This Certificate */}
+                            {certRubrics.length > 0 ? (
+                              <div className="flex flex-col mt-2 gap-2 ">
+                                {certRubrics.map((rubric, rubricIndex) => (
+                                  <div
+                                    key={rubricIndex}
+                                    className="w-full h-fit rounded-md items-center justify-start gap-4 flex "
+                                  >
+                                    <input
+                                      type="checkbox"
+                                      onChange={(e) => {
+                                        const isChecked = e.target.checked;
+                                        const updatedTrainees = getValues("trainees").map((t) => {
+                                          if (t.id === trainee._id) {
+                                            const updatedRubrics = t.rubrics?.map((r) => { // Safeguard for undefined rubrics
+                                              if (r.certificateId === certificate.id) {
+                                                if (isChecked) {
+                                                  return { ...r, rubrics: [...(r.rubrics || []), rubric] }; // Ensure r.rubrics is defined
+                                                } else {
+                                                  return { ...r, rubrics: (r.rubrics || []).filter((rr) => rr !== rubric) }; // Safeguard against undefined rubrics
+                                                }
+                                              }
+                                              return r;
+                                            }) || []; // Ensure fallback if rubrics is undefined
+                                            return { ...t, rubrics: updatedRubrics };
+                                          }
+                                          return t;
+                                        });
+                                        setValue("trainees", updatedTrainees);
+                                      }}
+                                      checked={watch("trainees").some((t) => {
+                                        if (t.id === trainee._id) {
+                                          const rubricData = t.rubrics?.find((r) => r.certificateId === certificate.id); // Safeguard for undefined rubrics
+                                          return rubricData && Array.isArray(rubricData.rubrics) && rubricData.rubrics.includes(rubric);
+                                        }
+                                        return false;
+                                      })}
+                                      
+                                      className="w-4 h-4 rounded-md flex-shrink-0"
+                                    />
+
+                                    <span className="text-sm font-medium text-gray-500">{rubric}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <p className="text-gray-500 text-sm">No rubrics available for this certificate.</p>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                  </div>
+                );
+              })}
             </div>
-            <span className="text-gray-500 text-sm px-12 text-center">a
-              No trainees selected. Please use the search box above to find and select trainees.
-            </span>          
-          </div>
-        )}
-      </div>
+          ): (
+            <div className="w-full rounded-md ring-1 ring-gray-200 h-40 mt-2 flex flex-col items-center justify-center gap-2">
+              <div className="w-8 h-8 rounded-md bg-gray-100 flex items-center justify-center">
+                <User className="w-6 h-6 stroke-2 stroke-gray-500" />
+              </div>
+              <span className="text-gray-500 text-sm px-12 text-center">a
+                No trainees selected. Please use the search box above to find and select trainees.
+              </span>          
+            </div>
+          )}
+        </div>
+      )}
       <div className="w-full flex items-center justify-end gap-4 mt-6">
         <button type="button" className="w-24" onClick={handleClose}>Cancel</button>
         <button type="button" className="w-24 ring-1 rounded-md ring-rose-500 text-rose-500 px-2 h-9" onClick={handleDecline}>Decline</button>
