@@ -136,6 +136,9 @@ const TrainingBranch = ({ setActiveBranch, setData }) => {
           const bgColor = getColorForInitial(initials[0]);
           const { bg, text,label , ring } = getStatusColor(training.status);
           const validTrainees = training.trainees.filter(subTrainee => subTrainee.status === "trainees");
+          const filteredTrainees = training.trainees.filter(
+            trainee => Object.keys(trainee).length !== 0
+          );
           return (
             <div
               key={index}
@@ -205,7 +208,7 @@ const TrainingBranch = ({ setActiveBranch, setData }) => {
                     Release
                   </button>
                 ) : (
-                  training?.trainees && training.trainees > 0 && (                  
+                  filteredTrainees > 0 && (
                     <button 
                       className="text-xs uppercase px-4 py-2 rounded-md text-amber-500"
                       onClick={(e) => handleOpenViewModal(e, training)}
