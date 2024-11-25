@@ -312,6 +312,8 @@ const EditNewTrainingForm = ({ selectedTraining, setOpen }) => {
   const background = getColorForInitial(initilaista ? initilaista[0] : "");
   const { bg, text, ring, label } = getStatusColor(selectedTraining.status);
 
+  console.log(selectedTraining)
+
   return (
     <div className="p-6 flex flex-col items-start gap-4">
     <div className="flex items-center gap-2 w-full">
@@ -388,16 +390,18 @@ const EditNewTrainingForm = ({ selectedTraining, setOpen }) => {
         })}
       </div>
     </div>
-    <div className="flex items-center gap-2 mt-8">
-      <div className="w-8 h-8 rounded-md bg-gray-100 flex items-center justify-center">
-        <Users2 className="w-5 h-5 stroke-2 stroke-gray-500" />
+    {selectedTraining.trainees && (
+      <div className="flex items-center gap-2 mt-8">
+        <div className="w-8 h-8 rounded-md bg-gray-100 flex items-center justify-center">
+          <Users2 className="w-5 h-5 stroke-2 stroke-gray-500" />
+        </div>
+        <h1 className="text-lg font-medium text-gray-700">Trainees</h1>
       </div>
-      <h1 className="text-lg font-medium text-gray-700">Trainees</h1>
-    </div>
+    )}
 
     <div className="flex flex-col gap-2 w-full">
       <div className="flex flex-col mt-2 gap-4">
-        {selectedTraining.trainees.length > 0 && selectedTraining.trainees.map((trainee, index) => {
+        {selectedTraining?.trainees > 0 && selectedTraining.trainees.map((trainee, index) => {
           const initials = trainee.id.firstName[0] + trainee.id.lastName[0];
           const bgColor = getColorForInitial(initials ? initials[0] : "");
 
