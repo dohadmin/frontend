@@ -128,19 +128,6 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
         </div>
         <h1 className="text-lg font-medium text-gray-700">Personal Information</h1>
       </div>
-      <div className="w-full">
-        <Controller
-          name="avatar"
-          control={control}
-          render={({ field : {value, onChange} }) => (
-            <ImageInput
-              value={value}
-              onChange={onChange}
-              person="trainee"
-            />
-          )}
-        />
-      </div>
 
       <div className=" flex items-center justify-center gap-4 mt-4 w-full">        
         <div className="flex flex-col gap-2 w-full">
@@ -154,6 +141,7 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
                 placeholder='Juan'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.firstName}
+                isDisabled={true}
               />
             )}
           />
@@ -170,6 +158,8 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
                 placeholder='D.'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.middleInitial}
+                isDisabled={true}
+
               />
             )}
           />
@@ -186,6 +176,8 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
                 placeholder='Dela Cruz'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.lastName}
+                isDisabled={true}
+
               />
             )}
           />
@@ -206,6 +198,8 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
                 `}
                 onChange={(e) => onChange(e.target.value)}
                 value={formatDate(value)}
+                disabled={true}
+
               />
             )}
           />
@@ -225,6 +219,8 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
                 onChange={(newValue) => {
                   onChange(newValue)
                 }}
+                isDisabled={true}
+
               />
             )}
           />
@@ -246,6 +242,8 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
                 setChecked={value => {
                   onChange(value);
                 }}
+                isDisabled={true}
+
               />
               <RadioButton 
                 className="w-full"
@@ -255,6 +253,8 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
                 setChecked={value => {
                   onChange(value);
                 }}
+                isDisabled={true}
+
               />
             </>
           )}
@@ -279,7 +279,9 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
                 value={value}
                 placeholder='Consunji'
                 onChange={(e) => onChange(e.target.value)}
-                didError={!!errors.street}         
+                didError={!!errors.street}       
+                isDisabled={true}
+  
               />
             )}
           />
@@ -294,7 +296,9 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
                 value={value}
                 placeholder='Sta Lucia'
                 onChange={(e) => onChange(e.target.value)}
-                didError={!!errors.municipality}         
+                didError={!!errors.municipality}       
+                isDisabled={true}
+  
               />
             )}
           />        
@@ -312,7 +316,9 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
                 value={value}
                 placeholder='San Fernando'
                 onChange={(e) => onChange(e.target.value)}
-                didError={!!errors.city}         
+                didError={!!errors.city}        
+                isDisabled={true}
+ 
               />
             )}
           />        
@@ -328,7 +334,9 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
                 value={value}
                 placeholder='Pampanga'
                 onChange={(e) => onChange(e.target.value)}
-                didError={!!errors.province}         
+                didError={!!errors.province}    
+                isDisabled={true}
+     
               />
             )}
           />        
@@ -346,7 +354,8 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
                 value={value}
                 placeholder='2020'
                 onChange={(e) => onChange(e.target.value)}
-                didError={!!errors.zipCode}         
+                didError={!!errors.zipCode}    
+                isDisabled={true}     
               />
             )}
           />    
@@ -372,6 +381,8 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
               placeholder='+63 098 7654 3210'
               onChange={(e) => onChange(e.target.value)}
               didError={!!errors.phoneNumber}         
+              isDisabled={true}
+
             />
           )}
         />    
@@ -388,6 +399,8 @@ const ViewTraineeRequestForm = ({setOpen, request}) => {
               placeholder='juandelacruz@gmail.com'
               onChange={(e) => onChange(e.target.value)}
               didError={!!errors.email}         
+              isDisabled={true}
+
             />
           )}
         />
