@@ -192,7 +192,7 @@ const AddNewTrainingForm = ({ setOpen }) => {
 
   const filteredTrainees = trainees.filter((trainee) => !selected.some((t) => t._id === trainee._id));
   const trainingDate = watch("date")
-  const isToday = new Date(trainingDate).toDateString() === new Date().toDateString()
+  const isTrainingDay = new Date(trainingDate).getDate() === new Date().getDate();
 
 
 
@@ -328,7 +328,7 @@ const AddNewTrainingForm = ({ setOpen }) => {
         )}
         </div>
       </div>
-      {isToday && (
+      {isTrainingDay && (
         <>
           <hr className="border-t border-gray-200 w-full mt-4" />
 
