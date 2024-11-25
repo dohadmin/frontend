@@ -397,7 +397,7 @@ const EditNewTrainingForm = ({ selectedTraining, setOpen }) => {
 
     <div className="flex flex-col gap-2 w-full">
       <div className="flex flex-col mt-2 gap-4">
-        {selectedTraining.trainees.map((trainee, index) => {
+        {selectedTraining.trainees.length > 0 && selectedTraining.trainees.map((trainee, index) => {
           const initials = trainee.id.firstName[0] + trainee.id.lastName[0];
           const bgColor = getColorForInitial(initials ? initials[0] : "");
 
