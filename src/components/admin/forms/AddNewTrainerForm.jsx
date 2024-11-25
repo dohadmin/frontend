@@ -92,7 +92,7 @@ const AddNewTrainerForm = ({setOpen}) => {
             render={({ field: { value, onChange } }) => (
               <Input
                 value={value}
-                placeholder='Juan'
+                placeholder='Type firstname here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.firstName}
               />
@@ -109,7 +109,7 @@ const AddNewTrainerForm = ({setOpen}) => {
             render={({ field: { value, onChange } }) => (
               <Input
                 value={value}
-                placeholder='D.'
+                placeholder='type here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.middleInitial}
               />
@@ -126,7 +126,7 @@ const AddNewTrainerForm = ({setOpen}) => {
             render={({ field: { value, onChange } }) => (
               <Input
                 value={value}
-                placeholder='Dela Cruz'
+                placeholder='Type lastname here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.lastName}
               />
@@ -223,7 +223,7 @@ const AddNewTrainerForm = ({setOpen}) => {
             render={({ field: { value, onChange } }) => (
               <Input
                 value={value}
-                placeholder='Consunji'
+                placeholder='Type street here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.street}         
               />
@@ -239,7 +239,7 @@ const AddNewTrainerForm = ({setOpen}) => {
             render={({ field: { value, onChange } }) => (
               <Input
                 value={value}
-                placeholder='Sta Lucia'
+                placeholder='Type municipality here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.municipality}         
               />
@@ -258,7 +258,7 @@ const AddNewTrainerForm = ({setOpen}) => {
               <Input
                 className="w-full"
                 value={value}
-                placeholder='San Fernando'
+                placeholder='Type city here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.city}         
               />
@@ -275,7 +275,7 @@ const AddNewTrainerForm = ({setOpen}) => {
               <Input
                 className="w-full"
                 value={value}
-                placeholder='Pampanga'
+                placeholder='Type province here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.province}         
               />
@@ -294,7 +294,7 @@ const AddNewTrainerForm = ({setOpen}) => {
               <Input
                 className="w-full"
                 value={value}
-                placeholder='2020'
+                placeholder='Type zip code here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.zipCode}         
               />
@@ -319,7 +319,7 @@ const AddNewTrainerForm = ({setOpen}) => {
             <Input
               className="w-full"
               value={value}
-              placeholder='DOH'
+              placeholder='Type agency here'
               onChange={(e) => onChange(e.target.value)}
               didError={!!errors.agency}         
             />
@@ -336,7 +336,7 @@ const AddNewTrainerForm = ({setOpen}) => {
             <Input
               className="w-full"
               value={value}
-              placeholder='+63 098 7654 3210'
+              placeholder='Type phone number here'
               onChange={(e) => onChange(e.target.value)}
               didError={!!errors.phoneNumber}         
             />
@@ -353,7 +353,7 @@ const AddNewTrainerForm = ({setOpen}) => {
             <Input
               className="w-full"
               value={value}
-              placeholder='juandelacruz@gmail.com'
+              placeholder='Type email here'
               onChange={(e) => onChange(e.target.value)}
               didError={!!errors.email}         
             />
