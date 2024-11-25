@@ -211,6 +211,7 @@ const AddNewTrainingForm = ({ setOpen }) => {
           control={control}
           render={({ field: { value, onChange } }) => (
             <input
+              min={new Date().toISOString().split("T")[0]} // Set minimum date to today
               type="date"
               className={`w-full ring-1 rounded-md h-10 px-4 outline-none
                 ${
