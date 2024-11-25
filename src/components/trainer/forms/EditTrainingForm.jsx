@@ -321,6 +321,7 @@ const EditTrainingForm = ({ selectedTraining, setOpen }) => {
                     : " ring-gray-200 placeholder:text-sm text-smplaceholder:text-gray-500 text-gray-700 focus:outline-none focus:ring-2 "
                 }  
               `}
+              min={new Date().toISOString().split("T")[0]} // Set minimum date to today
               onChange={(e) => onChange(e.target.value)}
               value={formatDate(value)}
             />
