@@ -103,7 +103,7 @@ const RequestNewTraineeForm = ({setOpen}) => {
             render={({ field: { value, onChange } }) => (
               <Input
                 value={value}
-                placeholder='Juan'
+                placeholder='Type your first name here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.firstName}
               />
@@ -137,7 +137,7 @@ const RequestNewTraineeForm = ({setOpen}) => {
             render={({ field: { value, onChange } }) => (
               <Input
                 value={value}
-                placeholder='Dela Cruz'
+                placeholder='Type your last name here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.lastName}
               />
@@ -234,7 +234,7 @@ const RequestNewTraineeForm = ({setOpen}) => {
             render={({ field: { value, onChange } }) => (
               <Input
                 value={value}
-                placeholder='Consunji'
+                placeholder='Type your street here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.street}         
               />
@@ -250,7 +250,7 @@ const RequestNewTraineeForm = ({setOpen}) => {
             render={({ field: { value, onChange } }) => (
               <Input
                 value={value}
-                placeholder='Sta Lucia'
+                placeholder='Type your municipality here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.municipality}         
               />
@@ -269,7 +269,7 @@ const RequestNewTraineeForm = ({setOpen}) => {
               <Input
                 className="w-full"
                 value={value}
-                placeholder='San Fernando'
+                placeholder='Type your city here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.city}         
               />
@@ -286,7 +286,7 @@ const RequestNewTraineeForm = ({setOpen}) => {
               <Input
                 className="w-full"
                 value={value}
-                placeholder='Pampanga'
+                placeholder='Type your province here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.province}         
               />
@@ -305,7 +305,7 @@ const RequestNewTraineeForm = ({setOpen}) => {
               <Input
                 className="w-full"
                 value={value}
-                placeholder='2020'
+                placeholder='Type your zip code here'
                 onChange={(e) => onChange(e.target.value)}
                 didError={!!errors.zipCode}         
               />
@@ -331,7 +331,7 @@ const RequestNewTraineeForm = ({setOpen}) => {
             <Input
               className="w-full"
               value={value}
-              placeholder='+63 098 7654 3210'
+              placeholder='Type your phone number here'
               onChange={(e) => onChange(e.target.value)}
               didError={!!errors.phoneNumber}         
             />
@@ -348,7 +348,7 @@ const RequestNewTraineeForm = ({setOpen}) => {
             <Input
               className="w-full"
               value={value}
-              placeholder='juandelacruz@gmail.com'
+              placeholder='Type your email here'
               onChange={(e) => onChange(e.target.value)}
               didError={!!errors.email}         
             />
