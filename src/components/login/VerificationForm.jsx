@@ -72,7 +72,7 @@ const VerificationForm = ({ email }) => {
   return (
     <section className="w-full h-full flex items-center">
       <div className="w-full flex items-center justify-center ring-1 ring-gray-200 h-full relative ">
-        <img src="https://news-image-api.abs-cbn.com/Prod/editorImage/172838869571420160614-doh-building-JC-1.jpg" 
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Department_of_Health_%28DOH%29_%28Rizal_Avenue%2C_Santa_Cruz%2C_Manila%3B_2014-11-12%29.jpg/1200px-Department_of_Health_%28DOH%29_%28Rizal_Avenue%2C_Santa_Cruz%2C_Manila%3B_2014-11-12%29.jpg" 
         alt="background" 
         className="w-full h-full object-cover" 
       />
